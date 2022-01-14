@@ -1,4 +1,4 @@
-#Include %A_ScriptDir%\InputExec.ahk
+#Include %A_ScriptDir%\lib\InputExec.ahk
 #IfWinActive, Roblox
 global numSaves := 0
 

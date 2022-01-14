@@ -4,6 +4,8 @@
 mod fns;
 use colored::control;
 
+use crate::fns::await_input;
+
 /*
 terminal, manage ahks and their initial bindings
 
@@ -18,6 +20,7 @@ COMMAND:
     setbind <ahkfile> - set a binding for an ahk file
     unsetbind <ahkfile> - unset a binding for an ahk file
     doubleslash - if true, double slash
+    rusure - if true, will prompt "are you sure?""
 
 BINDING MANAGEMENT
 
@@ -27,8 +30,6 @@ INFO:
     all the ahks are modular
 
 https://github.com/redox-os/termion
-
-
 */
 
 fn main() {
@@ -39,13 +40,7 @@ fn main() {
     }
 
     println!("Hi! We're just setting some stuff up before you start...");
-    fns::exec("I", &|| {
-        if 1 + 1 == 2 {
-            Ok("1")
-        } else {
-            Err("1+1 != 2")
-        }
-    });
+    // fns::exec("Finding Config File", &|| {});
 
     fns::exec("2222", &|| {
         if 1 + 1 == 3 {
@@ -56,5 +51,6 @@ fn main() {
     });
 
     fns::open(".");
+    await_input();
     fns::pause();
 }

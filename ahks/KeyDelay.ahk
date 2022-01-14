@@ -1,7 +1,5 @@
-﻿; credit doge
-
-SendMode Input
-$a::
+﻿SendMode Input
+$a:: ; KEY
 	{
 		Sleep, 7
 		SendInput {a down}

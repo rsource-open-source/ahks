@@ -1,4 +1,3 @@
-//use colored::Colorize;
 use std::{
     io::{stdin, stdout, Read, Write},
     process::Command,
@@ -21,6 +20,12 @@ pub fn pause() {
     stdout.flush().unwrap();
     stdin().read(&mut [0]).unwrap();
     std::process::exit(0);
+}
+
+pub fn await_input() -> String {
+    let mut input = String::new();
+    stdin().read_line(&mut input).unwrap();
+    input.trim().to_string()
 }
 
 pub fn open(path: &str) {

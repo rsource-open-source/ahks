@@ -1,2 +1,3 @@
 #Include %A_ScriptDir%\lib\InputExec.ahk
-y::exec("serverlist") ; KEY
+
+p::exec("r") ; KEY

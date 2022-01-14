@@ -1,12 +1,12 @@
 do(array)
 {   
     for _, inputvalue in array {
-        Sleep, 10
+        Sleep, 15
         SendInput %inputvalue%
     }
 }
 
 exec(key)
 {
-    do(["/", "/", key, "{enter}"])
+    do(["/", key, "{enter}"])
 }
