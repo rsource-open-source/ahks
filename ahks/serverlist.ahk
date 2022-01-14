@@ -1,13 +1,4 @@
-; credit it saopinn
-; https://github.com/saopinn/AutoR
+#Include %A_ScriptDir%\InputExec.ahk
 
 ; KEY
-y::
-Send, /
-Sleep, 30
-Send, /
-Sleep, 30
-Send, serverlist
-Sleep, 30
-Send, {enter}
-return
+y::exec("serverlist")
