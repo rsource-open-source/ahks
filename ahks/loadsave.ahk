@@ -1,8 +1,30 @@
-﻿#Include %A_ScriptDir%\InputExec.ahk
+#Include %A_ScriptDir%\InputExec.ahk
+#IfWinActive, Roblox
+global numSaves := 0
 
-; KEY
-XButton2::
+1::
 {
-    exec("load")
+    numSaves++
+    exec("save " . numSaves)
 }
 return
+
+2::
+{
+    exec("load " . numSaves)
+}
+return
+
+~Del::
+InputBox, numSaves, Jump to which save? (Numbers only)
+return
+
+Z::
+numSaves--
+return
+
+X::
+numSaves++
+return
+
+~Home::Suspend

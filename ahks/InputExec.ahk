@@ -8,7 +8,5 @@ do(array)
 
 exec(key)
 {
-    do(["/", "/", %key%, "{enter}"])
+    do(["/", "/", key, "{enter}"])
 }
-
-return do,exec
