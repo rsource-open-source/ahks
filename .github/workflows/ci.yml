@@ -1,4 +1,4 @@
-name: RUST_CI
+name: ci
 
 on:
   push:
@@ -12,10 +12,12 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
+    - name: update rust
+      run: rustup update
     - name: Build
       run: cargo build --verbose
     - name: Run tests
