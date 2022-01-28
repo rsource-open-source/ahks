@@ -1,12 +1,12 @@
-do(array)
+do(PARA)
 {   
-    for _, inputvalue in array {
+    for _, inputvalue in PARA {
         Sleep, 15
         SendInput %inputvalue%
     }
 }
 
-exec(key)
+exec(PARA)
 {
-    do(["/", key, "{enter}"])
+    do(["/", PARA, "{enter}"])
 }

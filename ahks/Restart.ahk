@@ -1,3 +1,2 @@
 #Include %A_ScriptDir%\lib\InputExec.ahk
-
-p::exec("r") ; KEY
+p::exec("r")

@@ -1,10 +1,14 @@
 // use std::{fs, io::stdin, path::Path, time::Duration};
 
 // mod config;
+mod config;
 mod fns;
 use colored::control;
 
-use crate::fns::await_input;
+use crate::{
+    config::find_ahk_exe,
+    fns::{await_input, pause},
+};
 
 /*
 terminal, manage ahks and their initial bindings
@@ -12,15 +16,16 @@ terminal, manage ahks and their initial bindings
 INTRO
 load config file
 if no config file, create one
-ask for ahk directory
+ask for ahk directory, if none, ask if make ahk directory
 put ahk directory into config file
 
 COMMAND:
     list - list all .ahk files in ahk directory
+    open - open ahk directory in explorer
     setbind <ahkfile> - set a binding for an ahk file
     unsetbind <ahkfile> - unset a binding for an ahk file
     doubleslash - if true, double slash
-    rusure - if true, will prompt "are you sure?""
+    transpile - will transpile an ahk file into a raw copy/pasteable version
 
 BINDING MANAGEMENT
 
@@ -41,6 +46,13 @@ fn main() {
 
     println!("Hi! We're just setting some stuff up before you start...");
     // fns::exec("Finding Config File", &|| {});
+    {
+        // find ahk exec
+        if find_ahk_exe().is_err() {
+            println!("AutoHotkey.exe not found. Why did you move it? :|");
+            pause(); // TODO: ask where it is AND implement verification
+        }
+    }
 
     fns::exec("2222", &|| {
         if 1 + 1 == 3 {
