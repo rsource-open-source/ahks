@@ -1,5 +1,5 @@
 ﻿SendMode Input
-$a:: ; KEY
+$a::
 	{
 		Sleep, 7
 		SendInput {a down}

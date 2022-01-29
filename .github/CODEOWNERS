@@ -1,0 +1,4 @@
+/ahks/chat/lib/InputExec.ahk  @dowoge
+/ahks/KeyDelay.ahk            @dowoge
+/ahks/chat/*.ahk              @insyri
+/ahks/LoadSave.ahk            # snebr, modified
