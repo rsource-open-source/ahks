@@ -1,5 +1,5 @@
 # ahks
 
-This directory acts as a collection spot for AHKs and - as default - consists of AHKs that are most generally used, such as `/r`. Users can create their own AHKs via the application.
+Directory of ahks.
 
-For a copy/paste version of the ahks, see the `raw` directory.
+The `chat` directory is _not_ copy/pasteable, you may transpile it through the application.

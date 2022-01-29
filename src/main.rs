@@ -4,10 +4,11 @@
 mod config;
 mod fns;
 use colored::control;
+use std::{fs::File, path::Path};
 
 use crate::{
-    config::find_ahk_exe,
-    fns::{await_input, pause},
+    config::find_file,
+    fns::{await_input, exec, open, pause},
 };
 
 /*
@@ -18,12 +19,12 @@ ask for ahk directory, if none, ask if make ahk directory
 put ahk directory into config file
 
 COMMAND:
-    list - list all .ahk files in ahk directory
-    open - open ahk directory in explorer
-    setbind <ahkfile> - set a binding for an ahk file
-    unsetbind <ahkfile> - unset a binding for an ahk file
-    doubleslash - if true, double slash
-    transpile - will transpile an ahk file into a raw copy/pasteable version
+    list                - list all .ahk files in ahk directory
+    open <ahk?>         - open ahk directory in explorer
+    setbind <ahk>       - set a new binding for an ahk file
+    chatbind <name>     - new ahk for the chat
+    transpile <ahk>     - will transpile an ahk file into a raw copy/pasteable version
+    run <ahk>           - run an ahk file
 
 BINDING MANAGEMENT
 
@@ -42,17 +43,32 @@ fn main() {
         fns::pause();
     }
 
-    println!("Hi! We're just setting some stuff up before you start...");
-    // fns::exec("Finding Config File", &|| {});
+    if !Path::new("./config.toml").exists() {
+        // New user
+        println!("Hi! We're just setting some stuff up before you start...");
+        exec("Create config file", &|| {
+            // let mut file = match File::create("./config.toml") {
+            //     Ok(file) => "file created",
+            //     Err(e) => e.to_string(),
+            // };
+
+            let f = File::create("./config.toml");
+            if f.is_ok() {
+                Ok("file created")
+            } else {
+                Err("some error") // implement actual error
+            }
+        });
+    }
     {
         // find ahk exec
-        if find_ahk_exe().is_err() {
+        if find_file("C:\\Program Files\\AutoHotkey\\AutoHotkey.exe").is_err() {
             println!("AutoHotkey.exe not found. Why did you move it? :|");
             pause(); // TODO: ask where it is AND implement verification
         }
     }
 
-    fns::exec("2222", &|| {
+    exec("2222", &|| {
         if 1 + 1 == 3 {
             Ok("1")
         } else {
@@ -60,7 +76,7 @@ fn main() {
         }
     });
 
-    fns::open(".");
+    open(".");
     await_input();
-    fns::pause();
+    pause();
 }
