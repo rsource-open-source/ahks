@@ -11,8 +11,6 @@ use crate::{
 };
 
 /*
-terminal, manage ahks and their initial bindings
-
 INTRO
 load config file
 if no config file, create one
